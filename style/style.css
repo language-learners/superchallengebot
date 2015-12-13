@@ -1,0 +1,439 @@
+/* 
+    Document   : style
+    Created on : 2012-apr-25, 16:07:57
+    Author     : Philip
+*/
+
+@font-face {
+  font-family: 'Tenor Sans';
+  font-style: normal;
+  font-weight: normal;
+  src: local('☺'), url('TenorSans-Regular.ttf') format('truetype');
+}
+
+root { 
+    display: block;
+}
+
+body {
+    background-color: #e7e0bf;
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+    text-align: center;
+    font-family: 'Tenor Sans', sans-serif;
+}
+
+/*
+    Stuff for formatting
+*/
+.subhead {
+    font-weight: bold;
+}
+
+.hideable {
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    height: 0;
+    
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+/*
+    Header & Background
+*/
+#background {
+    position: fixed;
+    top: 0;
+    height: 770px;
+    width: 100%;
+    text-align: center;
+    background-image: url('../image/bg_gradient.png');
+    background-position: 0 100%;
+    background-repeat: repeat-x;
+    background-color: #adcab4;
+    overflow: hidden;
+    z-index: -1;
+}
+#background .centered {
+    position: relative;
+    width: 0px;
+    height: 0px;
+    margin: auto;
+}
+#background .left {
+    position: relative;
+    background-image: url('../image/bg_left.png');
+    width: 400px;
+    height: 255px;
+    top: 300px;
+    margin-left: -800px;
+    margin-bottom: -255px;
+}
+#background .right {
+    position: relative;
+    background-image: url('../image/bg_right.png');
+    width: 296px;
+    height: 175px;
+    top: 360px;
+    margin-left: 400px;
+}
+
+#headerback {
+    position: absolute;
+    left: 0;
+    top: 30px;
+    width: 100%;
+    height: 70px;
+    background-color: #262626;
+    text-align: center;
+}
+#header {
+    position: relative;
+    width: 820px;
+    margin: auto;
+    margin-top: 8px;
+    color: white;
+    text-align: left;
+    font-size: 36px;
+    padding-top: 4px;
+}
+#help {
+    float: right;
+    display: inline-block;
+    width: 49px;
+    height: 31px;
+    background-image: url('../image/help.png');
+    margin-top: 6px;
+}
+#twit {
+    float: right;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-image: url('../image/twit.png');
+    margin-top: 6px;
+    margin-left: 20px;
+}
+
+/*
+    Main Layout
+*/
+
+#main {
+    left: -410px;
+    width: 820px;
+    display: inline-block;
+    text-align: center;  
+    padding-top: 160px;
+}
+
+.panel {
+    position: relative;
+    background-color: white;
+    width: 100%;
+    text-align: left;
+    overflow: hidden;
+    margin-bottom: 50px;
+}
+.panel .header {
+    padding-left: 50px;
+    padding-top: 30px;
+    margin-bottom: -30px;
+    width: 100%;
+    height: 90px;
+    background-color: #20ab75;
+    
+    color: white;
+    font-size: 28px;
+}
+.panel .subheader {
+    padding-left: 50px;
+    padding-top: 10px;
+    
+    width: 100%;
+    height: 40px;
+    background-color: #1c7d57;
+    color: white;
+    font-size: 20px;
+}
+.panel .content {
+    padding-top: 20px;
+    padding-left: 50px;
+    padding-bottom: 20px;
+    margin-right: 50px;
+}
+.headerlink {
+    padding-right: 100px;
+    position: relative;
+    display: block;
+    float: right;
+    font-size: 16px !important;
+    color: white !important;
+    cursor: pointer;
+}
+.headericon {
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: -30%;
+}
+
+/*
+    Getting started
+*/
+#getstarted .bullet {
+    display: block;
+    width: 100%;
+    height: 50px;
+    cursor: pointer;
+}
+#getstarted.hide {
+    display: none;
+}
+.shortdesc {
+    margin-top: -60px;
+    padding: 30px 100px;
+    
+}
+#getstarted .number {
+    display: inline-block;
+    vertical-align: -15%;
+    width: 60px;
+    text-align: center;
+    margin-left: -20px;
+    font-size: 36px;
+}
+#closeicon {
+    background-image: url('../image/close.png');
+    width: 23px;
+    height: 23px;
+}
+
+/*
+    Participants Table
+*/
+#moreicon {
+    background-image: url('../image/more.png');
+    width: 21px;
+    height: 24px;
+}
+
+/*
+    Tables with a header row for displaying participants.
+*/
+table {
+    margin-top: -50px;
+    border-width: 1px;
+    border-style: none;
+    border-collapse: collapse;
+    margin-bottom: 60px;
+}
+table th {
+    font-weight: normal;
+    text-align: left;
+    padding-top: 10px;
+    border-style: none;
+    cursor: pointer;
+    height: 50px;
+    color: white;
+    font-size: 20px;
+}
+#thparticipant {
+    padding-left: 50px;
+    width: 270px; 
+}
+#thstudying { width: 130px; }
+#thread { width: 100px; }
+#thwatched { width: 100px; }
+#thprogress { width: 220px; }
+table th:hover {
+    background-color: #20ab75;
+}
+
+table span.username {
+    padding-left: 48px;
+    font-size: 20px;
+}
+
+table span.twitter {
+    padding-left: 50px;
+    color: darkgrey !important;
+}
+
+
+table tr {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #888;
+    border-right: none;
+    border-left: none;
+    border-bottom: none;
+}
+table tr.merge {
+    border-top: none;
+}
+table td.hide {
+    font-size: 0.5em;
+    visibility: hidden;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+table td.show {
+    padding: 4px;
+}
+
+table td.stars {
+    padding-right: 10px;
+}
+
+/*
+    Stars and Badges
+*/
+
+div.star {
+    float: left;
+    width: 26px;
+    height: 26px;
+    margin: 2; /* top right bottom left */
+}
+
+div.star.none { background-image: url('../image/none.png'); }
+div.star.bronze { background-image: url('../image/bronze.png'); }
+div.star.silver { background-image: url('../image/silver.png'); }
+div.star.gold { background-image: url('../image/gold.png'); }
+div.star.white { background-image: url('../image/platinum.png'); }
+div.star.blue { 
+    margin-left: -6px;
+    width: 22px;
+    background-image: url('../image/blue.png'); 
+}
+div.star.filler {width: 3px;}
+
+div.badge {
+    float: right;
+    width: 26px;
+    height: 26px;
+    cursor: help;
+    margin-left: -8px;
+}
+div.badge.sprint.bronze { background-image: url('../image/bronze_sprint.png'); }
+div.badge.streak.bronze { background-image: url('../image/bronze_streak.png'); }
+div.badge.sprint.silver { background-image: url('../image/silver_sprint.png'); }
+div.badge.streak.silver { background-image: url('../image/silver_streak.png'); }
+div.badge.sprint.gold { background-image: url('../image/gold_sprint.png'); }
+div.badge.streak.gold { background-image: url('../image/gold_streak.png'); }
+div.badge.sprint.white { background-image: url('../image/white_sprint.png'); }
+div.badge.streak.white { background-image: url('../image/white_streak.png'); }
+div.badge.streak.white.tick { background-image: url('../image/white_streak_tick.png'); }
+
+
+/*
+     Links aren't intrusive
+*/
+
+a:link {
+    text-decoration: none;
+    color: #0033aa;
+}
+
+a:visited {
+    text-decoration: none;
+    color: #5533aa;
+}
+
+a:active {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline; 
+    color: #f00;
+}
+
+/*
+    Language code formatting
+*/
+.languagecode {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    font-weight: bold;
+    padding-right: 10px;
+}
+
+/*
+    Participant page, graphs and stuff
+*/
+
+#header img {
+    vertical-align: middle;
+    margin-right: 20px;
+}
+
+#backlink {
+    padding-right: 20px;
+    padding-top: 10px;
+}
+
+#backicon {
+    background-image: url('../image/back.png');
+    width: 21px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.headerlanguagecode {
+    opacity: 0.6;
+    font-size: 20px;
+}
+
+.headerbadges {
+    text-align: right;
+    width: 400px;
+    font-size: 16px;
+    float: right;
+    display: inline-block;
+    padding-right: 70px;
+}
+.headerbadges .badge {
+    float: none;
+    display: inline-block;
+    vertical-align: -40%;
+}
+
+.headerbadges .spacer {
+    display: inline-block;
+    width: 30px;
+}
+
+.ratedata {
+    padding-left: 20px;
+    font-size: 16px;
+}
+
+.section {
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 20px;
+}
+
+.graph {
+    width: 100%;
+    height: 500px;
+}
+
+.buttons {
+    float: right;
+    margin-right: 80px;
+}
+
+.listdate {display: inline-block; width: 160px;}
+.listtitle {padding-right: 20px;}
