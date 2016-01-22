@@ -1,3 +1,8 @@
-<?phprequire_once('update.php');
-update();
-?>
+<?php
+
+require_once('update.php');
+
+update();
+
+?>
+
