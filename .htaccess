@@ -1,2 +1,2 @@
-#Disable directory browsingOptions All -Indexes
-# secure htaccess file<Files .htaccess>order allow,denydeny from all</Files>
+#Disable directory browsingOptions All -Indexes
+# secure htaccess file<Files .htaccess>order allow,denydeny from all</Files>

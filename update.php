@@ -101,6 +101,7 @@ function updateTwitterUsers()
     // update each user's information
     foreach($users as $user)
     {
+      echo $user;
         updateParticipant($user->screen_name, 
                 $user->name, 
                 $user->location,

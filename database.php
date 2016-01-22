@@ -1,17 +1,18 @@
 <?php
-
 require_once("helpers.php");
-
+require_once("configuration.php");
 // Do we use the testing database or the release one?
-$testing = false ? "_testing" : "";
-$link = login("database_name".$testing);
+
+$link = login(DB_NAME.$testing);
 
 function login($databasename)
 {
+
     // Connects to the Database 
     global $testing;
-    $link = mysqli_connect($testing ? "server_url" : "server_url or localhost", "user_name", "password_here", $databasename);
-    
+
+    $link = mysqli_connect($testing ? "server_url" : DB_HOST , DB_USER , DB_PASSWORD , DB_NAME);
+        
     if(!$link)
         die(mysqli_connect_error());
     
@@ -279,9 +280,15 @@ function getUpdateNames($count = 100)
     
     // return those rows
     global $link;
+    /* echo "SELECT UserName FROM Participants LIMIT ".$lastindex." ".$count ; */
+    /* $namesresult = mysqli_query($link, "SELECT UserName FROM Participants  */
+    /*     LIMIT ".$lastindex.", ".$count) */
+    /*         or die(__FILE__.__LINE__.mysqli_error($link)); */
+    echo "SELECT UserName FROM Participants LIMIT ".$lastindex." ".$count ;
     $namesresult = mysqli_query($link, "SELECT UserName FROM Participants 
         LIMIT ".$lastindex.", ".$count)
             or die(__FILE__.__LINE__.mysqli_error($link));
+
     $namearray = array();
     while($namerow = mysqli_fetch_assoc($namesresult))
         $namearray[] = $namerow['UserName'];
