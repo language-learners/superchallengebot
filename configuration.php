@@ -1,7 +1,9 @@
 <?php
 
+
 /** Test mode Y/N */
 $testing = false ? "_testing" : "";
+define('DEBUGGING', 't');
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */

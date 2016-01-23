@@ -28,6 +28,7 @@ function safe($string)
 function callStoredProcedure($procedure)
 {
     global $link;
+    // if (DEBUGGING) { echo  "CALL ".$procedure ."<BR>";}
     $resultset = mysqli_multi_query($link, "CALL ".$procedure)
         or die(__FILE__.__LINE__.mysqli_error($link).$procedure);
     $data = mysqli_store_result($link);
