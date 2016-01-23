@@ -62,6 +62,14 @@ CREATE PROCEDURE GetParticipantEntries(IN username VARCHAR(255))
 DELIMITER ;
 
 
+DELIMITER //
+CREATE PROCEDURE GetLanguages()
+   BEGIN
+   SELECT * FROM Language;
+   END //
+DELIMITER ;
+
+
 -- These look like the most complex procedures, I'm fairly sure they should be a calculation.
 -- Don't yet understand what is being returned. So placeholder below. 
 
