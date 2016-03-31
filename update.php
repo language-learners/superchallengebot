@@ -95,13 +95,11 @@ function updateTwitterUsers()
     global $twit;
     $args = array();
     $args['screen_name'] = implode(", ", getUpdateNames(100));;
-   $users = $twit->get('users/lookup', $args);
-
-   
+    $users = $twit->get('users/lookup', $args);
     // update each user's information
     foreach($users as $user)
     {
-      echo $user;
+      //echo $user;
         updateParticipant($user->screen_name, 
                 $user->name, 
                 $user->location,

@@ -285,7 +285,7 @@ function getUpdateNames($count = 100)
     /* $namesresult = mysqli_query($link, "SELECT UserName FROM Participants  */
     /*     LIMIT ".$lastindex.", ".$count) */
     /*         or die(__FILE__.__LINE__.mysqli_error($link)); */
-    echo "SELECT UserName FROM Participants LIMIT ".$lastindex." ".$count ;
+    // echo "SELECT UserName FROM Participants LIMIT ".$lastindex." ".$count . "\n" ;
     $namesresult = mysqli_query($link, "SELECT UserName FROM Participants 
         LIMIT ".$lastindex.", ".$count)
             or die(__FILE__.__LINE__.mysqli_error($link));

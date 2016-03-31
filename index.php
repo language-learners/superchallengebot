@@ -30,7 +30,7 @@
         
     <div id='getstarted' class='<?php hideGetStarted(); ?>'>
         <div class='shortdesc'>
-            Track your language learning progress as you read 100 books and watch 100 movies before the 31st of December 2015. Sign up below!
+            Track your language learning progress as you read 100 books and watch 100 movies before the 31st of December 2017. Sign up below!
         </div>
     <div class='panel'>
     <div class='header'>
@@ -83,8 +83,8 @@
         Track your language learning progress.
     </div>
     <div class='content'>
-        <p>The <a href="http://how-to-learn-any-language.com/forum/forum_posts.asp?TID=37888" target='_blank'>Language Super Challenge</a>
-        encourages you to increase your abilities in a foreign language by reading 100 books and watching 100 movies before December 31st 2015. 
+        <p>The <a href="http://forum.language-learners.org/viewtopic.php?f=21&t=769" target='_blank'>Language Super Challenge</a>
+        encourages you to increase your abilities in a foreign language by reading 100 books and watching 100 movies before December 31st 2017. 
         To help you get through the next <?php printDaysLeft() ?> days, the <a href="https://twitter.com/#!/langchallenge" target='_blank'>
         LangChallenge Twitter Bot</a> will read your tweets and track your progress for you.</p>
 
@@ -92,7 +92,7 @@
             <a href='#keywords'>registration tweet</a>, and then the LangChallenge Twitter bot will follow your progress. 
             You can see <a href='#participants'>who else is doing the challenge</a>, and see more details by clicking on your username in the list.</p>
         <br>
-        <p>Questions or comments? E-mail me at <a href="mailto:philip@surrealix.com">philip@surrealix.com</a>.</p>
+        <p>Questions or comments? Please ask on the Forum in the <a href="http://forum.language-learners.org/viewforum.php?f=16"  target='_blank'>technical support room.</a>
     </div>
     </div>
         
@@ -104,11 +104,15 @@
         What's been happening to the Super Challenge?
     </div>
     <div class='content'>
+        <p><span class='subhead'>Update 0.6</span><br>
+            - Released code as opensource.<br>
+            - Now hosted on the language-learners.org website for 2016-17 Super Challenge.<br>
+        </p>
+        <div class='hideable' id='news'>
         <p><span class='subhead'>Update 0.5</span><br>
             - Added activity badges.<br>
             - Streaks now display a tick if you have completed the requirement for the week.<br>
         </p>
-        <div class='hideable' id='news'>
 
        <p><span class='subhead'>Update 0.4</span><br>
             - New ranking algorithms.<br>
@@ -204,8 +208,7 @@
 
    </div>
     <div class='content'>
-        <p>If your language isn't in this list, drop me a line at 
-        <a href="mailto:philip@surrealix.com">philip@surrealix.com</a> and I'll add it!</p>
+        <p>If your language isn't in this list, please let us know in the <a href="http://forum.language-learners.org/viewforum.php?f=16" target='_blank'>technical support room.</a>
         <?php printLanguages() ?>
         <a class='toggle' href='#languages'>show more</a>
     </div>

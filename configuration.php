@@ -1,19 +1,19 @@
 <?php
 
-
 /** Test mode Y/N */
 $testing = false ? "_testing" : "";
-define('DEBUGGING', 't');
+define('DEBUGGING', 'f');
+
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define('DB_NAME', 'languagechallenge');
+define('DB_NAME', 'xgipubli_sc2016');
 
 /** MySQL database username */
-define('DB_USER', 'root');
+define('DB_USER', 'xgipubli_sc2016');
 
 /** MySQL database password */
-define('DB_PASSWORD', 'Bagg1ns');
+define('DB_PASSWORD', '2EKGDdppWcFeq6K');
 
 /** MySQL hostname */
 define('DB_HOST', 'localhost');

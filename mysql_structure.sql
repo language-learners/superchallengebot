@@ -219,6 +219,14 @@ INSERT INTO Preferences (Name, Value) VALUES ('consumer_secret_key', '');
 INSERT INTO Preferences (Name, Value) VALUES ('oauth_token', '');
 INSERT INTO Preferences (Name, Value) VALUES ('oauth_secret_token', '');
 
+INSERT INTO Preferences (Name, Value) VALUES ('last_update',            0);
+INSERT INTO Preferences (Name, Value) VALUES ('last_twitter_id',        0);
+INSERT INTO Preferences (Name, Value) VALUES ('book_pages',            50);
+INSERT INTO Preferences (Name, Value) VALUES ('film_minutes',          90);
+INSERT INTO Preferences (Name, Value) VALUES ('last_userupdate_index', 200);
+
+
+
 
 INSERT INTO Preferences (Name, Value) VALUES ('book_pages', '100');
 INSERT INTO Preferences (Name, Value) VALUES ('film_minutes', '100');
@@ -226,6 +234,7 @@ INSERT INTO Preferences (Name, Value) VALUES ('film_minutes', '100');
 INSERT INTO Language (Code, Name) VALUES ('af','Afrikaans ');
 INSERT INTO Language (Code, Name) VALUES ('sq','Albanian');
 INSERT INTO Language (Code, Name) VALUES ('gr','Ancient Greek');
+,'feed_data','UK',
 INSERT INTO Language (Code, Name) VALUES ('ar','Arabic');
 INSERT INTO Language (Code, Name) VALUES ('am','Aramaic');
 INSERT INTO Language (Code, Name) VALUES ('be','Belarusian');
