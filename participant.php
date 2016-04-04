@@ -1,4 +1,4 @@
-0;136;0c<?php
+<?php
 
 require_once('database.php');
 require_once('preferences.php');
