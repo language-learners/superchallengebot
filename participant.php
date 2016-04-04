@@ -1,4 +1,4 @@
-<?php
+0;136;0c<?php
 
 require_once('database.php');
 require_once('preferences.php');
@@ -39,7 +39,7 @@ getParticipantData();
     <div class='shortdesc'>
         <?php printInfoLine(); ?>
     </div>
-    
+
     <?php printLanguageSections() ?>
         
     </div>
@@ -118,15 +118,22 @@ function printLanguageSection($entry)
         title='Activity Badge (recently studied at least one book and one film)'></div> active" : "");
     
     $bookkey = $languagecode."books";
+    /* $bookshtml = "Read $books book".($books==1?"":"s"). */
+    /*         getRateHtml($books).getDisplayButtonsHtml($bookkey); */
     $bookshtml = "Read $books book".($books==1?"":"s").
-            getRateHtml($books).getDisplayButtonsHtml($bookkey);
+            getRateHtml($books).getDisplayButtonsHtml($bookkey).
+      "(at this rate you'll finish with " . getValueAtEnd($books) . " book".($books==1?")":"s)");
     $filmkey = $languagecode."films";
+    /* $filmshtml = "Watched $films film".($films==1?"":"s"). */
+    /*         getRateHtml($films).getDisplayButtonsHtml($filmkey); */
     $filmshtml = "Watched $films film".($films==1?"":"s").
-            getRateHtml($films).getDisplayButtonsHtml($filmkey);
+            getRateHtml($films).getDisplayButtonsHtml($filmkey).
+      "(at this rate you'll finish with " . getValueAtEnd($films) . " film".($films==1?")":"s)");
     
     $booksectionhtml = getSectionHtml($bookactions, $bookkey, 'Total Read');
     $filmsectionhtml = getSectionHtml($filmactions, $filmkey, 'Total Watched');
-    
+    // $mtest = getBooksAtEnd ($books);
+
     //$sprinthtml<span class='spacer'></span>
     
     // finally, print everything
@@ -141,18 +148,21 @@ function printLanguageSection($entry)
        
 
        <div class='subheader'>
-            $bookshtml
+            $bookshtml 
+<!-- This is where the number of read books goes -->
         </div>
         <div class='content'>
+<!-- This is where the names of read books goes -->
             $booksectionhtml
         </div>
     
         <div class='subheader'>
             $filmshtml
+<!-- This is where the number of watched films goes -->
         </div>
         <div class='content'>
             $filmsectionhtml
-
+<!-- This is where the number of watched films goes -->
        </div>
     
         </div>
@@ -316,5 +326,24 @@ function getStreakData($times)
     $streak['Active'] = $active; // have we update this week?
     return $streak; 
 }
+
+function getValueAtEnd ($value)
+{
+  global $preferences;
+
+  $startdate = new DateTime($preferences->START_DATE);
+  $enddate = new DateTime($preferences->END_DATE);
+  $now = new DateTime();
+  $startinterval = $startdate->diff($now);
+  $endinterval = $enddate->diff($now);
+  $startLapse = $startinterval->format('%a');
+  $endLapse = $endinterval->format('%a');
+  $currentRunRate = $value/$startLapse;
+  $finalValue = (float)$value + ($currentRunRate * $endLapse);
+
+  return number_format($finalValue, 2, '.', '');
+
+}
+
 
 ?>

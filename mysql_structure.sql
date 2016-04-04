@@ -11,9 +11,9 @@ SET time_zone = "+00:00";
 
 -- Use these commands to create the DB/
 -- 
--- DROP DATABASE languagechallenge;
+-- -- DROP DATABASE languagechallenge;
 -- CREATE DATABASE languagechallenge;
-use languagechallenge;
+use xgipubli_sc2016;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -26,7 +26,7 @@ use languagechallenge;
 --
 -- Structure de la table `Actions`
 --
-DROP TABLE `Actions`;
+-- DROP TABLE `Actions`;
 CREATE TABLE IF NOT EXISTS `Actions` (
   `Id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `EntryId` int(10) unsigned NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `Actions` (
 --
 -- Structure de la table `Entries`
 --
-DROP TABLE `Entries`;
+-- DROP TABLE `Entries`;
 CREATE TABLE IF NOT EXISTS `Entries` (
   `Id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `UserName` varchar(255) NOT NULL,
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `Entries` (
 -- Structure de la table `Language`
 --
 
-DROP TABLE `Language`;
+-- DROP TABLE `Language`;
 CREATE TABLE IF NOT EXISTS `Language` (
   `Code` varchar(2) NOT NULL,
   `Name` varchar(255) NOT NULL,
@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `Language` (
 --
 -- Structure de la table `Participants`
 --
-DROP TABLE `Participants`;
+-- DROP TABLE `Participants`;
 CREATE TABLE IF NOT EXISTS `Participants` (
   `UserName` varchar(255) NOT NULL,
   `DisplayName` varchar(255) NOT NULL,
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `Participants` (
 -- Structure de la table `Preferences`
 --
 
-DROP TABLE `Preferences`;
+-- DROP TABLE `Preferences`;
 CREATE TABLE IF NOT EXISTS `Preferences` (
   `Name` varchar(255) NOT NULL,
   `Value` varchar(255) NOT NULL,
@@ -109,21 +109,21 @@ DELIMITER $$
 --
 -- Procédures
 --
-DROP PROCEDURE `GetChallenge`$$
+-- DROP PROCEDURE `GetChallenge`$$
 CREATE PROCEDURE `GetChallenge`(IN InCode VARCHAR(255))
 BEGIN
         SELECT * FROM Challenge
     WHERE Challenge.Code != InCode;
         END$$
 
-DROP PROCEDURE `GetChallenges`$$
+-- DROP PROCEDURE `GetChallenges`$$
 CREATE PROCEDURE `GetChallenges`()
 BEGIN
         SELECT * FROM Challenge 
         ORDER BY GroupCode, VariationName;
         END$$
 
-DROP PROCEDURE `GetEntryActions`$$
+-- DROP PROCEDURE `GetEntryActions`$$
 CREATE PROCEDURE `GetEntryActions`(IN InEntryId INT, IN InActionCode VARCHAR(255))
 BEGIN
         SELECT Time, AmountData, TextData
@@ -132,7 +132,7 @@ BEGIN
     AND ActionCode = InActionCode;
         END$$
 
-DROP PROCEDURE `GetGroupedEntries`$$
+-- DROP PROCEDURE `GetGroupedEntries`$$
 CREATE PROCEDURE `GetGroupedEntries`(IN TotalBookPages INT, IN TotalFilmMinutes INT)
 BEGIN
         SELECT Participants.DisplayName AS DisplayName, 
@@ -152,14 +152,14 @@ BEGIN
              (PagesRead/TotalBookPages+MinutesWatched/TotalFilmMinutes) DESC;
         END$$
 
-DROP PROCEDURE `GetLanguages`$$
+-- DROP PROCEDURE `GetLanguages`$$
 CREATE PROCEDURE `GetLanguages`()
 BEGIN
         SELECT Code, Name FROM Language
         ORDER BY Name ASC;
         END$$
 
-DROP PROCEDURE `GetParticipantDetails`$$
+-- DROP PROCEDURE `GetParticipantDetails`$$
 CREATE PROCEDURE `GetParticipantDetails`(IN InUserName VARCHAR(255))
 BEGIN
         SELECT UserName, DisplayName, Location, 
@@ -168,7 +168,7 @@ BEGIN
     WHERE Participants.UserName = InUserName;
         END$$
 
-DROP PROCEDURE `GetParticipantEntries`$$
+-- DROP PROCEDURE `GetParticipantEntries`$$
 CREATE PROCEDURE `GetParticipantEntries`(IN InUserName VARCHAR(255))
 BEGIN
         SELECT Language.Name AS LanguageName, Language.Code as LanguageCode,
@@ -181,7 +181,7 @@ BEGIN
         AND Entries.UserName = InUserName;
         END$$
 
-DROP PROCEDURE `GetStatistics`$$
+-- DROP PROCEDURE `GetStatistics`$$
 CREATE PROCEDURE `GetStatistics`()
 BEGIN
         SELECT SUM(PagesRead) AS TotalPagesRead, SUM(MinutesWatched) AS TotalMinutesWatched 
@@ -225,16 +225,12 @@ INSERT INTO Preferences (Name, Value) VALUES ('book_pages',            50);
 INSERT INTO Preferences (Name, Value) VALUES ('film_minutes',          90);
 INSERT INTO Preferences (Name, Value) VALUES ('last_userupdate_index', 200);
 
-
-
-
-INSERT INTO Preferences (Name, Value) VALUES ('book_pages', '100');
-INSERT INTO Preferences (Name, Value) VALUES ('film_minutes', '100');
+INSERT INTO Preferences (Name, Value) VALUES ('StartDate', '2016-05-01 00:00:00');
+INSERT INTO Preferences (Name, Value) VALUES ('EndDate', '2017-12-31 11:59:00');
 
 INSERT INTO Language (Code, Name) VALUES ('af','Afrikaans ');
 INSERT INTO Language (Code, Name) VALUES ('sq','Albanian');
 INSERT INTO Language (Code, Name) VALUES ('gr','Ancient Greek');
-,'feed_data','UK',
 INSERT INTO Language (Code, Name) VALUES ('ar','Arabic');
 INSERT INTO Language (Code, Name) VALUES ('am','Aramaic');
 INSERT INTO Language (Code, Name) VALUES ('be','Belarusian');

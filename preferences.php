@@ -23,14 +23,21 @@ class Preferences
     public $STAR_VALUE = 25;
     public $EPOCH = null;
 
+    public $START_DATE = "";
+    public $END_DATE = "";
+
    
     function __construct() 
     {
         $preferences = getPreferences();
+	// what the hell is this used for?
         $this->EPOCH = new DateTime('5 January 2014');
         
+        $this->START_DATE = $preferences['StartDate'];
+        $this->END_DATE = $preferences['EndDate'];
         $this->BOOK_PAGES = $preferences['book_pages'];
         $this->FILM_MINUTES = $preferences['film_minutes'];
+
         $this->TARGETS = array(
             'book' => $this->BOOK_PAGES, 
             'film' => $this->FILM_MINUTES);
