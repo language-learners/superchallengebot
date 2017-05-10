@@ -1,0 +1,22 @@
+Mon, 02 May 2016 21:51:56 +0100
+Processing tweet 727239130657251328 from user RRDearman
+@sclangtest #register #french
+
+Mon, 02 May 2016 21:51:56 +0100
+Replied to 727239130657251328 with @RRDearman You can't sign up to a language challenge 
+            without a language! Specify one with a hashtag.
+
+Mon, 02 May 2016 21:52:15 +0100
+update() called but not run
+
+Mon, 02 May 2016 21:52:16 +0100
+update() called but not run
+
+Tue, 03 May 2016 09:34:05 +0100
+Processing tweet 727415570556162048 from user RRDearman
+@sclangtest #register #french please
+
+Tue, 03 May 2016 09:34:05 +0100
+Replied to 727415570556162048 with @RRDearman You can't sign up to a language challenge 
+            without a language! Specify one with a hashtag.
+

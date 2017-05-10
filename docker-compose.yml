@@ -5,8 +5,8 @@
 #   docker-compose run setup
 setup:
   build: "."
-  links:
-    - "db"
+#  links:
+#    - "db"
   volumes:
     - ".:/src"
   volumes_from:
@@ -19,15 +19,16 @@ setup:
 #   docker-compose up site
 site:
   build: "."
-  links:
-    - "db"
+#  links:
+#    - "db"
   volumes:
     - ".:/src"
-    - "./superchallengebot:/var/www/html"
+#    - "./:/var/www/html"
   volumes_from:
     - "sitedata"
   ports:
     - "80:80"
+    - "3306:3306"
 
 # Stores persistent data volumes for our site container.  We need this
 # to
@@ -44,7 +45,7 @@ sitedata:
   #   - "/var/www/html/store"
   #   - "/var/www/html/images"
 
-# This is launched automatically to provide you with a MySQL database.
+# # This is launched automatically to provide you with a MySQL database.
 db:
   image: "mysql:5.6"
   environment:
@@ -54,7 +55,7 @@ db:
   ports:
     - "3306"
 
-# Stores persistent data volumes for our db container.
+# # Stores persistent data volumes for our db container.
 dbdata:
   image: "busybox"
   command: "/bin/true"

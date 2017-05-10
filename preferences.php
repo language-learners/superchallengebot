@@ -30,9 +30,10 @@ class Preferences
     function __construct() 
     {
         $preferences = getPreferences();
-	// what the hell is this used for?
-        $this->EPOCH = new DateTime('5 January 2014');
-        
+        // $this->EPOCH = new DateTime("now");
+        //$this->EPOCH = new DateTime::createFromFormat('d/m/Y','01/01/2017');
+        $this->EPOCH = new DateTime('2000-01-01');
+
         $this->START_DATE = $preferences['StartDate'];
         $this->END_DATE = $preferences['EndDate'];
         $this->BOOK_PAGES = $preferences['book_pages'];

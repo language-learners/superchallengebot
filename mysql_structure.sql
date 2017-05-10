@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `Actions` (
 CREATE TABLE IF NOT EXISTS `Entries` (
   `Id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `UserName` varchar(255) NOT NULL,
-  `LanguageCode` varchar(2) NOT NULL,
+  `LanguageCode` varchar(3) NOT NULL,
   `PagesRead` int(10) unsigned DEFAULT '0',
   `MinutesWatched` int(10) unsigned DEFAULT '0',
   `LongestStreak` int(10) unsigned DEFAULT '0',
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `Entries` (
 
 -- DROP TABLE `Language`;
 CREATE TABLE IF NOT EXISTS `Language` (
-  `Code` varchar(2) NOT NULL,
+  `Code` varchar(3) NOT NULL,
   `Name` varchar(255) NOT NULL,
   PRIMARY KEY (`Code`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -208,12 +208,16 @@ VALUES ('dummy','af', 0,0,0,0,0 );
 INSERT INTO Entries(UserName,LanguageCode,PagesRead,MinutesWatched,LongestSprint,LongestStreak,CurrentStreak) 
 VALUES ('dummy','fr', 0,0,0,0,0 );
 
+INSERT INTO Entries(UserName,LanguageCode,PagesRead,MinutesWatched,LongestSprint,LongestStreak,CurrentStreak) 
+VALUES ('dummy','egy', 0,0,0,0,0 );
+
 
 -- --------------- INSERT STATIC VALUES -------------------------------
 
 --
 -- OAuth information has to be obtained from Twitter developer site
 --
+
 INSERT INTO Preferences (Name, Value) VALUES ('consumer_key', '');
 INSERT INTO Preferences (Name, Value) VALUES ('consumer_secret_key', '');
 INSERT INTO Preferences (Name, Value) VALUES ('oauth_token', '');
@@ -370,3 +374,17 @@ INSERT INTO Language (Name, Code) VALUES ('Wolof','wo');
 INSERT INTO Language (Name, Code) VALUES ('Xhosa','xh');
 INSERT INTO Language (Name, Code) VALUES ('Yoruba','yo');
 INSERT INTO Language (Name, Code) VALUES ('Zulu','zu');
+alter table Language modify Code varchar(3);
+alter table Entries modify LanguageCode varchar(3);
+INSERT INTO Language (Name, Code) VALUES ('Ancient-Egyptian','egy');
+INSERT INTO Language (Name, Code) VALUES ('Family-Egyptian','egx');
+INSERT INTO Language (Name, Code) VALUES ('Family-Romance','roa');
+INSERT INTO Language (Name, Code) VALUES ('Family-Sino-Tibetan','sit');
+INSERT INTO Language (Name, Code) VALUES ('Family-Slavic','sla');
+INSERT INTO Language (Name, Code) VALUES ('Family-Germanic','gem');
+INSERT INTO Language (Name, Code) VALUES ('Family-Finno-Ugrian','fiu');
+INSERT INTO Language (Name, Code) VALUES ('Family-Semitic','sem');
+INSERT INTO Language (Name, Code) VALUES ('Family-Turkic','trk');
+INSERT INTO Language (Name, Code) VALUES ('Family-Greek','grk');
+INSERT INTO Language (Name, Code) VALUES ('Family-North-Germanic','gmq');
+
