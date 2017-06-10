@@ -1,13 +1,18 @@
 FROM php:5.4-apache
 
+# RUN apt-get update && \
+#     apt-get install -y php5-mysqlnd git zlib1g-dev imagemagick libjpeg-dev libpng-dev \
+#         mysql-client php-mysqli && \
+# docker-php-ext-install zip mysql mysqli gd 
+
 RUN apt-get update && \
     apt-get install -y php5-mysqlnd git zlib1g-dev imagemagick libjpeg-dev libpng-dev \
         mysql-client && \
-docker-php-ext-install zip mysql mysqli gd 
+docker-php-ext-install zip mysql mysqli gd
 
 
-ADD ./superchallengebot/ /var/www/html/
-ADD ./dockerconfig/config-include.php /var/www/html/configuration.php
+COPY ./ /var/www/html/
+COPY ./dockerconfig/config-include.php /var/www/html/configuration.php
 
 
 
