@@ -5,7 +5,11 @@
 # Standard paranoia.
 set -euo pipefail
 
+echo "===== Starting superchallengebot worker"
+
 while true; do
-    php -q /var/www/html/update.php
+    echo "==== Polling for updates at $(date)"
+    php /var/www/html/update.php ||
+        echo "*** update.php exited with $?"
     sleep 300
 done
