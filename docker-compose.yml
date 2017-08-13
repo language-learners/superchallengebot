@@ -5,8 +5,8 @@
 #   docker-compose run setup
 setup:
   build: "."
-#  links:
-#    - "db"
+  links:
+    - "db"
   volumes:
     - ".:/src"
   volumes_from:
@@ -19,8 +19,8 @@ setup:
 #   docker-compose up site
 site:
   build: "."
-#  links:
-#    - "db"
+  links:
+    - "db"
   volumes:
     - ".:/src"
 #    - "./:/var/www/html"

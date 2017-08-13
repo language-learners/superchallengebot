@@ -1,0 +1,15 @@
+#!/bin/bash
+#
+# Run our update script periodically to pull data from Twitter or wherever.
+
+# Standard paranoia.
+set -euo pipefail
+
+echo "===== Starting superchallengebot worker"
+
+while true; do
+    echo "==== Polling for updates at $(date)"
+    # php /var/www/html/autoupdate.php ||
+    #    echo "*** autoupdate.php exited with $?"
+    sleep 300
+done
