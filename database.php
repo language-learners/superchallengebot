@@ -1,7 +1,7 @@
 <?php
 //require_once("helpers.php");
 include_once dirname(__FILE__)."/helpers.php";
-include_once dirname(__FILE__)."/configuration.php";
+include_once dirname(__FILE__)."/config-files/configuration.php";
 // Do we use the testing database or the release one?
 
 $link = login(DB_NAME.$testing);
@@ -9,15 +9,15 @@ $link = login(DB_NAME.$testing);
 function login($databasename)
 {
 
-  // Connects to the Database 
+  // Connects to the Database
   global $testing;
 
   $link = mysqli_connect($testing ? "server_url" : DB_HOST , DB_USER , DB_PASSWORD , DB_NAME);
 
-        
+
   if(!$link)
     die(mysqli_connect_error());
-    
+
   return $link;
 }
 
@@ -34,7 +34,7 @@ function callStoredProcedure($procedure)
   $resultset = mysqli_multi_query($link, "CALL ".$procedure)
     or die(__FILE__.__LINE__.mysqli_error($link).$procedure);
   $data = mysqli_store_result($link);
-    
+
   // clear remaining sets in the resultset before returning
   while (mysqli_more_results($link)) {mysqli_next_result($link);}
   return $data;
@@ -53,7 +53,7 @@ function getPreference($name) {
   $data = mysqli_query($link, "SELECT Value FROM Preferences
         WHERE Name = '".$name."'")
     or die(__FILE__.__LINE__.mysqli_error($link));
-    
+
   $info = mysqli_fetch_array($data);
   return $info['Value'];
 }
@@ -62,7 +62,7 @@ function getPreferences() {
   global $link;
   $data = mysqli_query($link, "SELECT * FROM Preferences")
     or die(__FILE__.__LINE__.mysqli_error($link));
-    
+
   $preferences = Array();
   while($info = mysqli_fetch_array($data))
     $preferences[$info['Name']] = $info['Value'];
@@ -72,12 +72,12 @@ function getPreferences() {
 
 function getStatistics() {
   global $link;
-  $data = mysqli_query($link, "SELECT 
-        SUM(PagesRead) AS TotalPagesRead, 
-        SUM(MinutesWatched) AS TotalMinutesWatched 
+  $data = mysqli_query($link, "SELECT
+        SUM(PagesRead) AS TotalPagesRead,
+        SUM(MinutesWatched) AS TotalMinutesWatched
             FROM Entries")
     or die(__FILE__.__LINE__.mysqli_error($link));
-        
+
   return mysqli_fetch_array($data);
 }
 
@@ -86,7 +86,7 @@ function getLanguageName($code) {
   $data = mysqli_query($link, "SELECT Name FROM Language
         WHERE Code = '".$code."'")
     or die(__FILE__.__LINE__.mysqli_error($link));
-    
+
   $info = mysqli_fetch_array($data);
   return $info['Name'];
 }
@@ -96,7 +96,7 @@ function getActionEntryId($actionid) {
   $data = mysqli_query($link, "SELECT EntryId FROM Actions
         WHERE Id = '$actionid'")
     or die(__FILE__.__LINE__.mysqli_error($link));
-    
+
   $info = mysqli_fetch_array($data);
   return $info['EntryId'];
 }
@@ -106,19 +106,19 @@ function getAction($actionid) {
   $data = mysqli_query($link, "SELECT * FROM Actions
         WHERE Id = '$actionid'")
     or die(__FILE__.__LINE__.mysqli_error($link));
-    
+
   return mysqli_fetch_array($data);
 }
 
-function insertParticipant($username, $displayname, $feedcode = "none", $feeddata = "") 
+function insertParticipant($username, $displayname, $feedcode = "none", $feeddata = "")
 {
   // insert or update
   global $link;
-  $data = mysqli_query($link, 
-		       "INSERT INTO Participants (UserName, DisplayName, FeedData) 
+  $data = mysqli_query($link,
+		       "INSERT INTO Participants (UserName, DisplayName, FeedData)
         VALUES ('".safe($username).
 		       "', '".safe($displayname).
-		       "', '".safe($feeddata)."') 
+		       "', '".safe($feeddata)."')
                 ON DUPLICATE KEY UPDATE UserName=UserName")
     or die(__FILE__.__LINE__.mysqli_error($link));
 }
@@ -126,7 +126,7 @@ function insertParticipant($username, $displayname, $feedcode = "none", $feeddat
 function updateParticipant($username, $displayname, $location, $imageurl, $websiteurl, $about)
 {
   global $link;
-  mysqli_query($link, "UPDATE Participants 
+  mysqli_query($link, "UPDATE Participants
         SET DisplayName='".safe($displayname)."',
             Location='".safe($location)."',
             ImageUrl='".safe($imageurl)."',
@@ -139,7 +139,7 @@ function updateParticipant($username, $displayname, $location, $imageurl, $websi
 function insertEntry($username, $languagecode)
 {
   global $link;
-    
+
   // Check for double entries
   $query = "SELECT UserName, LanguageCode FROM Entries
         WHERE UserName='".safe($username).
@@ -153,8 +153,8 @@ function insertEntry($username, $languagecode)
   else
     {
       // Insert a new entry
-      $query = mysqli_query($link, "INSERT INTO Entries 
-            (UserName, LanguageCode) 
+      $query = mysqli_query($link, "INSERT INTO Entries
+            (UserName, LanguageCode)
             VALUES ('".safe($username).
 			    "', '".safe($languagecode)."')")
         or die(__FILE__.__LINE__.mysqli_error($link));
@@ -166,7 +166,7 @@ function removeEntry($id)
 {
   // Delete entry
   global $link;
-  $data = mysqli_query($link, "DELETE FROM Entries 
+  $data = mysqli_query($link, "DELETE FROM Entries
         WHERE Id=".$id)
     or die(__FILE__.__LINE__.mysqli_error($link));
 }
@@ -192,12 +192,12 @@ function incrementEntryRecord($id, $fieldname, $value)
         SET ".$fieldname."=".$fieldname."+".$value.
 		       " WHERE Id=".$id)
     or die(__FILE__.__LINE__.mysqli_error($link));
-    
+
   // return the new value
   $result = mysqli_query($link, "SELECT ".$fieldname.
 			 " FROM Entries WHERE Id=".$id)
     or die(__FILE__.__LINE__.mysqli_error($link));
-    
+
   $info = mysqli_fetch_array($result);
   return $info[$fieldname];
 }
@@ -216,8 +216,8 @@ function insertActionRecord($actionid, $actioncode, $entryid, $amount, $data = "
 {
   global $link;
   if($time != "NOW()") {$time = "'$time'";}
-  $data = mysqli_query($link, "INSERT INTO Actions 
-        (Id, EntryId, ActionCode, Time, AmountData, TextData) 
+  $data = mysqli_query($link, "INSERT INTO Actions
+        (Id, EntryId, ActionCode, Time, AmountData, TextData)
         VALUES ('$actionid', $entryid, '$actioncode', $time, ".
 		       safe($amount).", '".safe($data)."')")
     or die(__FILE__.__LINE__.mysqli_error($link));
@@ -229,11 +229,11 @@ function getActionCode($actionid)
   $data = mysqli_query($link, "SELECT ActionCode FROM Actions
         WHERE Id = '$actionid'")
     or die(__FILE__.__LINE__.mysqli_error($link));
-    
+
   // no data
   if(mysqli_num_rows($data) < 1)
     return "";
-    
+
   // the code
   $info = mysqli_fetch_array($data);
   return $info['ActionCode'];
@@ -244,11 +244,11 @@ function updateAction($actionid, $newprefix)
   // we must at least have something!
   if(!$actionid)
     return false;
-            
+
   global $link;
   $result = mysqli_query($link, "UPDATE Actions
         SET ActionCode=CONCAT('$newprefix"."_', SUBSTR(ActionCode, 5))
-        WHERE id='$actionid'") //LEFT(ActionCode, 4)='inc_' AND 
+        WHERE id='$actionid'") //LEFT(ActionCode, 4)='inc_' AND
     or die(__FILE__.__LINE__.mysqli_error($link));
 
   // we should always affect 1 row
@@ -261,18 +261,18 @@ function getUniqueEntry($username, $languagecode = "")
   global $link;
   $result = mysqli_query($link, "SELECT Id FROM Entries
         WHERE UserName = '".safe($username)."' ".
-			 ($languagecode == "" ? "" : 
+			 ($languagecode == "" ? "" :
 			  "AND LanguageCode = '".safe($languagecode)."'"))
     or die(__FILE__.__LINE__.mysqli_error($link));
-    
+
   // no data, or too much data
   if(mysqli_num_rows($result) < 1)
     return -1;
   else if(mysqli_num_rows($result) > 1)
     return -2;
-    
+
   // otherwise, the id as promised
-  $info = mysqli_fetch_array($result);   
+  $info = mysqli_fetch_array($result);
   return $info;
 }
 
@@ -280,7 +280,7 @@ function getUpdateNames($count = 100)
 {
   // where did we start off?
   $lastindex = getPreference("last_userupdate_index");
-    
+
   // return those rows
   global $link;
   /* echo "SELECT UserName FROM Participants LIMIT ".$lastindex." ".$count ; */
@@ -288,7 +288,7 @@ function getUpdateNames($count = 100)
   /*     LIMIT ".$lastindex.", ".$count) */
   /*         or die(__FILE__.__LINE__.mysqli_error($link)); */
   // echo "SELECT UserName FROM Participants LIMIT ".$lastindex." ".$count . "\n" ;
-  $namesresult = mysqli_query($link, "SELECT UserName FROM Participants 
+  $namesresult = mysqli_query($link, "SELECT UserName FROM Participants
         LIMIT ".$lastindex.", ".$count)
     or die(__FILE__.__LINE__.mysqli_error($link));
 
@@ -301,9 +301,9 @@ function getUpdateNames($count = 100)
     or die(__FILE__.__LINE__.mysqli_error($link));
   $totalcount = mysqli_fetch_array($countresult);
   $lastindex += $count;
-  if($lastindex >= $totalcount[0]) 
+  if($lastindex >= $totalcount[0])
     $lastindex = 0;
-    
+
   // Save the last updated index (wrapping if necessary)
   setPreference("last_userupdate_index", $lastindex);
 
