@@ -149,20 +149,16 @@ function printLanguageSection($entry)
 
        <div class='subheader'>
             $bookshtml 
-<!-- This is where the number of read books goes -->
         </div>
         <div class='content'>
-<!-- This is where the names of read books goes -->
             $booksectionhtml
         </div>
     
         <div class='subheader'>
             $filmshtml
-<!-- This is where the number of watched films goes -->
         </div>
         <div class='content'>
             $filmsectionhtml
-<!-- This is where the number of watched films goes -->
        </div>
     
         </div>
@@ -338,7 +334,7 @@ function getValueAtEnd ($value)
   $endinterval = $enddate->diff($now);
   $startLapse = $startinterval->format('%a');
   $endLapse = $endinterval->format('%a');
-  $currentRunRate = $value/$startLapse;
+  $currentRunRate =  $value/$startLapse;
   $finalValue = (float)$value + ($currentRunRate * $endLapse);
 
   return number_format($finalValue, 2, '.', '');
