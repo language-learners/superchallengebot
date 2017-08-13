@@ -1,0 +1,37 @@
+# For examples and documentation, start at:
+# http://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html#build-spec-ref-example
+# Based on:
+# https://github.com/JasonSwindle/codebuild-ecr-test/blob/master/buildspec.yml
+
+version: 0.1
+
+phases:
+  pre_build:
+    commands:
+      - echo "Installing build support tools"
+      - apt-get update -y
+      - apt-get install -y jq
+      - echo "Logging in to Amazon ECR"
+      - $(aws ecr get-login --region $AWS_DEFAULT_REGION)
+      - echo "Fetching git commit ID"
+      # Fetch our commit ID the hard way, by digging around in the state of
+      # state 0 of the current pipeline run.  See
+      # https://forums.aws.amazon.com/thread.jspa?threadID=226646
+      - aws codepipeline --region us-east-1 get-pipeline-state --name $IMAGE_REPO_NAME
+      - aws codepipeline --region us-east-1 get-pipeline-state --name $IMAGE_REPO_NAME | jq -r '.stageStates[0].actionStates[0].currentRevision.revisionId' > GIT_COMMIT_ID
+      - echo "Found git commit ID <$(cat GIT_COMMIT_ID)>"
+      # Bail if we don't actually have a git commit ID.
+      - "[ ! -z \"$(cat GIT_COMMIT_ID)\" ]"
+  build:
+    commands:
+      - echo "Build started on `date -u +%FT%TZ` (ISO-8601)"
+      - echo "Building the Docker image"
+      - docker build -t $IMAGE_REPO_NAME:$(cat GIT_COMMIT_ID) .
+      - docker tag $IMAGE_REPO_NAME:$(cat GIT_COMMIT_ID) $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$(cat GIT_COMMIT_ID)
+      - docker tag $IMAGE_REPO_NAME:$(cat GIT_COMMIT_ID) $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:latest
+  post_build:
+    commands:
+      - echo "Build completed on `date -u +%FT%TZ` (ISO-8601)"
+      - echo "Pushing the Docker image"
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$(cat GIT_COMMIT_ID)
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:latest
