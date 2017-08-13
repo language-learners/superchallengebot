@@ -1,0 +1,11 @@
+#!/bin/bash
+#
+# Run our update script periodically to pull data from Twitter or wherever.
+
+# Standard paranoia.
+set -euo pipefail
+
+while true; do
+    php -q /var/www/html/update.php
+    sleep 300
+done
