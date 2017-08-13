@@ -1,6 +1,7 @@
 <?php
-require_once("helpers.php");
-require_once("configuration.php");
+include_once dirname(__FILE__)."/helpers.php";
+include_once dirname(__FILE__)."/config-files/configuration.php";
+
 // Do we use the testing database or the release one?
 
 $link = login(DB_NAME.$testing);

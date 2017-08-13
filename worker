@@ -9,7 +9,7 @@ echo "===== Starting superchallengebot worker"
 
 while true; do
     echo "==== Polling for updates at $(date)"
-    # php /var/www/html/autoupdate.php ||
-    #    echo "*** autoupdate.php exited with $?"
+    php -q /var/www/html/autoupdate.php ||
+        echo "*** autoupdate.php exited with $?"
     sleep 300
 done

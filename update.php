@@ -419,6 +419,7 @@ function findEntryId($tweet)
    
     // but we must have a single entry or we can't go further
     $entry = getUniqueEntry($tweet->user->screen_name, $languagecode);
+    //echo "USER_SCREEN_NAME: ". $tweet->user->screen_name . " LANGCODE: ". $languagecode;
     if($entry < 0)
     {
         $tweet->error = $entry;
@@ -432,6 +433,7 @@ function findEntryId($tweet)
 
 function findLanguage($tweet)
 {
+  //echo findLanguageInString(sanifyText($tweet->text));
     return findLanguageInString(sanifyText($tweet->text));
 }
 
