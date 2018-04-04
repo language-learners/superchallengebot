@@ -11,9 +11,9 @@ SET time_zone = "+00:00";
 
 -- Use these commands to create the DB/
 -- 
--- -- DROP DATABASE languagechallenge;
--- CREATE DATABASE languagechallenge;
-use xgipubli_sc2016;
+DROP DATABASE languagechallenge;
+CREATE DATABASE languagechallenge;
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `Actions` (
   `AmountData` int(11) DEFAULT '0',
   `TextData` text,
   PRIMARY KEY (`Id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=690287028508975105 ;
+)  DEFAULT CHARSET=utf8 AUTO_INCREMENT=690287028508975105 ;
 
 -- --------------------------------------------------------
 
@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `Entries` (
   `CurrentStreak` int(10) unsigned NOT NULL DEFAULT '0',
   `LongestSprint` int(10) unsigned DEFAULT '0',
   PRIMARY KEY (`Id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=421 ;
+) DEFAULT CHARSET=utf8 AUTO_INCREMENT=421 ;
 
 -- --------------------------------------------------------
 
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `Language` (
   `Code` varchar(3) NOT NULL,
   `Name` varchar(255) NOT NULL,
   PRIMARY KEY (`Code`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `Participants` (
   `WebsiteUrl` varchar(255) DEFAULT NULL,
   `About` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`UserName`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `Preferences` (
   `Name` varchar(255) NOT NULL,
   `Value` varchar(255) NOT NULL,
   PRIMARY KEY (`Name`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) DEFAULT CHARSET=utf8;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
